@@ -1,3 +1,6 @@
+// Theme.kt
+// Archivo para configurar el tema principal de la aplicación usando Material3 y Jetpack Compose.
+// Aquí se integran los colores, tipografías y estilos globales.
 package com.example.apphollow_grupo11.ui.theme
 
 import android.app.Activity

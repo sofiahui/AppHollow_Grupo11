@@ -1,3 +1,6 @@
+// Type.kt
+// Archivo para definir las tipografías y estilos de texto personalizados.
+// Aquí se configuran las fuentes y tamaños para los textos de la app.
 package com.example.apphollow_grupo11.ui.theme
 
 import androidx.compose.material3.Typography

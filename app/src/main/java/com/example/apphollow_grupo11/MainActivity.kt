@@ -1,3 +1,6 @@
+// MainActivity.kt
+// Actividad principal de la aplicación. Aquí se inicializa la interfaz y la navegación principal usando Jetpack Compose y Material3.
+// Es el punto de entrada de la app de venta de ropa.
 package com.example.apphollow_grupo11
 
 import android.os.Bundle

@@ -1,3 +1,6 @@
+// Color.kt
+// Archivo para definir la paleta de colores personalizada usando Material3.
+// Aquí se configuran los colores principales, secundarios y de fondo de la app.
 package com.example.apphollow_grupo11.ui.theme
 
 import androidx.compose.ui.graphics.Color
