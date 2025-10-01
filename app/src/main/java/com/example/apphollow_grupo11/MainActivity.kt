@@ -45,6 +45,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     AppHollow_Grupo11Theme {
-        Greeting("Android")
+        HomeScreen()
     }
 }
