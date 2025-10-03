@@ -4,9 +4,7 @@
 
 package com.example.apphollow_grupo11.ui.screens
 
-import androidx.compose.foundation.Image
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.layout.ContentScale
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -18,47 +16,63 @@ import com.example.apphollow_grupo11.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 
-@Composable
-fun HomeScreen() {
-	// Scaffold proporciona la estructura visual básica (barra superior, contenido, etc.)
-	Scaffold(
-		topBar = {
-			// Barra superior personalizada
-			TopAppBar(title = { Text("Sleepy Hollow Store") })
-		}
-	) { innerPadding ->
-		// Contenido principal de la pantalla
-		Column(
-			modifier = Modifier
-				.fillMaxSize()
-				.padding(innerPadding)
-				.padding(15.dp), // Espaciado externo
-			verticalArrangement = Arrangement.spacedBy(24.dp), // Espaciado uniforme entre elementos
-			horizontalAlignment = Alignment.CenterHorizontally // Alineación central
-		) {
-			// Título principal
-			Text(
-				text = "Bienvenido a Sleepy Hollow Store",
-				
-			)
-			// Elemento visual extra: botón de ejemplo
-			Button(onClick = { /* Acción de ejemplo */ }) {
-				Text("Ver productos")
-			}
-			
-            Image(
-                painter = painterResource(id = R.drawable.logo_png), // Reemplaza con tu recurso de imagen
-                contentDescription = "Logo de la tienda",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp),
-                    contentScale=ContentScale.Fit
-            )
-			// Puedes agregar más elementos visuales aquí siguiendo la documentación oficial
-		}
-	}
 
+@Composable
+fun HomeScreen(
+	navController: NavController,
+	viewModel: MainViewModel = viewModel()
+) {
+	val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+	val scope = rememberCoroutineScope()
+
+	ModalNavigationDrawer(
+		drawerState = drawerState,
+		drawerContent = {
+			ModalDrawerSheet {
+				Text(text = "Menú", modifier = Modifier.padding(all = 16.dp))
+				NavigationDrawerItem(
+					label = { Text(text = "Ir a Perfil") },
+					selected = false,
+					onClick = {
+						// Acción al hacer click
+						scope.launch { drawerState.close() }
+						viewModel.navigateTo(Screen.Profile)
+					}
+				)
+
+           }
+       }
+	)
+
+  Scaffold(
+   topBar = {
+	TopAppBar(
+		title = { Text(text = "Sleepy Hollow Store") },
+		navigationIcon = {
+			IconButton(onClick = {
+				scope.launch { drawerState.open() }
+			}) {
+				Icon(imageVector = Icons.Default.Menu, contentDescription = "Menú")
+			}
+		}
+	)
 }
+) { innerPadding ->
+	  Column(
+		  modifier = Modifier
+			  .padding(paddingValues = innerPadding)
+			  .fillMaxSize(),
+		  horizontalAlignment = Alignment.CenterHorizontally,
+		  verticalArrangement = Arrangement.Center
+	  ) {
+		  Text(text = "¡Bienvenido a la Página de Inicio (MVVM)!")
+		  Spacer(modifier = Modifier.height(height = 16.dp))
+		  Button(onClick = { viewModel.navigateTo(Screen.Settings) }) {
+			  Text(text = "Ir a Configuración")
+		  }
+	  }
+  }
+
 
 @Preview(showBackground = true)
 @Composable
