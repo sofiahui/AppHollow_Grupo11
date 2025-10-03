@@ -4,12 +4,19 @@
 
 package com.example.apphollow_grupo11.ui.screens
 
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.apphollow_grupo11.R
+
+@OptIn(ExperimentalMaterial3Api::class)
 
 @Composable
 fun HomeScreen() {
@@ -17,10 +24,7 @@ fun HomeScreen() {
 	Scaffold(
 		topBar = {
 			// Barra superior personalizada
-			TopAppBar(
-				title = { Text("Sleepy Hollow Store") },
-				
-			)
+			TopAppBar(title = { Text("Sleepy Hollow Store") })
 		}
 	) { innerPadding ->
 		// Contenido principal de la pantalla
@@ -43,7 +47,7 @@ fun HomeScreen() {
 			}
 			
             Image(
-                painter = painterResource(id = R.drawable.tu_imagen), // Reemplaza con tu recurso de imagen
+                painter = painterResource(id = R.drawable.logo_png), // Reemplaza con tu recurso de imagen
                 contentDescription = "Logo de la tienda",
                 modifier = Modifier
                     .fillMaxWidth()
@@ -53,11 +57,13 @@ fun HomeScreen() {
 			// Puedes agregar más elementos visuales aquí siguiendo la documentación oficial
 		}
 	}
-    @Preview(showBackground = true)
-    @Composable
-    fun HomeScreenPreview() {   
-        HomeScreen()
-    }
+
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreview() {
+	HomeScreen()
 }
 
 // Cada sección está comentada para explicar su función y buenas prácticas.
