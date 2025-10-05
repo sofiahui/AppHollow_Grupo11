@@ -1,7 +1,7 @@
 // PerfilScreen.kt
 // Pantalla para mostrar y editar la información del perfil del usuario.
 // Aquí se implementa la UI para ver y modificar datos personales, dirección y preferencias.
-package com.example.apphollow_grupo11.ui.screens
+package com.example.apphollow_grupo11.ui.Screen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -11,7 +11,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.apphollow_grupo11.viewmodel.MainViewModel
@@ -23,7 +22,7 @@ fun ProfileScreen(
     viewModel: MainViewModel = viewModel()
 ) {
     // Lista de pantallas disponibles en la barra de navegación
-    val items = listOf(Screen.Home, Screen.Profile)
+    val items = listOf(Screen.Home, Screen.Perfil)
     var selectedItem by remember { mutableStateOf(1) }
 
     Scaffold(

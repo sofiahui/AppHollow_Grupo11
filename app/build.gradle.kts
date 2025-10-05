@@ -57,9 +57,17 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(androidx.navigation:navigation-compose:2.8.3)
-    implementation(androidx.compose.material:material-icons-core)
-    implementation(androidx.compose.material:material-icons-extended)
-    implementation(androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6)
+    // Jetpack Compose Navigation
+    implementation("androidx.navigation:navigation-compose:2.8.0")
+
+    // ViewModel + Compose integration
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4")
+
+    // Para usar corrutinas y flujos en ViewModel
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+
+    // Opcional: si usas íconos como Icons.Default.Menu
+    implementation("androidx.compose.material:material-icons-extended")
+
 
 }

@@ -1,5 +1,38 @@
-#!/usr/bin/env kotlin
+package com.example.apphollow_grupo11.viewmodel
 
-fun navigateTo(screen: Screen) {
-    // aquí puedes manejar lógica de navegación si quieres
+import androidx.lifecycle.ViewModel
+import com.example.apphollow_grupo11.navigation.NavigationEvent
+import com.example.apphollow_grupo11.navigation.Screen
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+class MainViewModel : ViewModel() {
+
+    private val _navigationEvents = MutableSharedFlow<NavigationEvent>()
+    val navigationEvents: SharedFlow<NavigationEvent> = _navigationEvents.asSharedFlow()
+
+    // Navegar hacia una pantalla específica
+    fun navigateTo(screen: Screen) {
+        CoroutineScope(Dispatchers.Main).launch {
+            _navigationEvents.emit(NavigationEvent.NavigateTo(route = screen))
+        }
+    }
+
+    // Volver atrás
+    fun navigateBack() {
+        CoroutineScope(Dispatchers.Main).launch {
+            _navigationEvents.emit(NavigationEvent.PopBackStack)
+        }
+    }
+
+    // Navegar hacia arriba (padre)
+    fun navigateUp() {
+        CoroutineScope(Dispatchers.Main).launch {
+            _navigationEvents.emit(NavigationEvent.NavigateUp)
+        }
+    }
 }
