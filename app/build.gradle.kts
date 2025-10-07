@@ -1,3 +1,5 @@
+
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -50,6 +52,9 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material3.window.size.class1)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.navigation.compose)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -57,17 +62,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    // Jetpack Compose Navigation
-    implementation("androidx.navigation:navigation-compose:2.8.0")
-
-    // ViewModel + Compose integration
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4")
-
-    // Para usar corrutinas y flujos en ViewModel
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
-
-    // Opcional: si usas íconos como Icons.Default.Menu
-    implementation("androidx.compose.material:material-icons-extended")
 
 
 }
