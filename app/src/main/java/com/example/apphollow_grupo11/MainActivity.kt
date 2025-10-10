@@ -19,7 +19,6 @@ import com.example.apphollow_grupo11.navigation.Screen
 import com.example.apphollow_grupo11.ui.Screen.HomeScreen
 import com.example.apphollow_grupo11.ui.Screen.PerfilScreen
 import com.example.apphollow_grupo11.ui.theme.AppHollow_Grupo11Theme
-import com.example.apphollow_grupo11.viewmodel.MainViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -28,7 +27,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AppHollow_Grupo11Theme {
-                val viewModel: MainViewModel = viewModel()
+                val viewModel: `MainViewModel.kt` = viewModel()
                 val navController = rememberNavController()
 
                 // 🔹 Escucha los eventos de navegación del ViewModel
