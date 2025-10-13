@@ -18,8 +18,12 @@ import com.example.apphollow_grupo11.navigation.NavigationEvent
 import com.example.apphollow_grupo11.navigation.Screen
 import com.example.apphollow_grupo11.ui.Screen.HomeScreen
 import com.example.apphollow_grupo11.ui.Screen.PerfilScreen
+import com.example.apphollow_grupo11.navigation.AppNavigation
 import com.example.apphollow_grupo11.ui.theme.AppHollow_Grupo11Theme
+import com.example.apphollow_grupo11.viewmodels.MainViewModel
 import kotlinx.coroutines.flow.collectLatest
+import androidx.compose.ui.Modifier
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
@@ -27,7 +31,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AppHollow_Grupo11Theme {
-                val viewModel: `MainViewModel.kt` = viewModel()
+                val viewModel: MainViewModel = viewModel()
                 val navController = rememberNavController()
 
                 // 🔹 Escucha los eventos de navegación del ViewModel
@@ -88,6 +92,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     AppHollow_Grupo11Theme {
-        HomeScreen()
+        Greeting("Android")
     }
 }

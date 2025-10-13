@@ -73,7 +73,7 @@ fun HomeScreen(
 				horizontalAlignment = Alignment.CenterHorizontally,
 				verticalArrangement = Arrangement.Center
 			) {
-				Text("¡Bienvenido a la Página de Inicio (MVVM)!")
+				Text("¡Bienvenido a la Página de Inicio !")
 				Spacer(modifier = Modifier.height(16.dp))
 				Button(onClick = { viewModel.navigateTo(Screen.Login) }) {
 					Text("Iniciar Sesión")

@@ -13,12 +13,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.apphollow_grupo11.navigation.Screen
+import com.example.apphollow_grupo11.viewmodels.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen(
+fun Screen.PerfilScreen(
     navController: NavController,
-    viewModel: `MainViewModel.kt` = viewModel()
+    viewModel: MainViewModel.kt = viewModel()
 ) {
     // Lista de pantallas disponibles en la barra de navegación
     val items = listOf(Screen.Home, Screen.Perfil)
