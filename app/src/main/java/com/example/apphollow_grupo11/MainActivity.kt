@@ -16,13 +16,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.apphollow_grupo11.navigation.NavigationEvent
 import com.example.apphollow_grupo11.navigation.Screen
-import com.example.apphollow_grupo11.ui.Screen.HomeScreen
-import com.example.apphollow_grupo11.ui.Screen.PerfilScreen
-import com.example.apphollow_grupo11.navigation.AppNavigation
+import com.example.apphollow_grupo11.ui.screen.HomeScreen
+import com.example.apphollow_grupo11.ui.screen.PerfilScreen
 import com.example.apphollow_grupo11.ui.theme.AppHollow_Grupo11Theme
 import com.example.apphollow_grupo11.viewmodels.MainViewModel
 import kotlinx.coroutines.flow.collectLatest
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 
 
 @OptIn(ExperimentalMaterial3Api::class)

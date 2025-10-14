@@ -1,4 +1,4 @@
-package com.example.apphollow_grupo11.ui.Screen
+package com.example.apphollow_grupo11.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -23,7 +23,7 @@ import com.example.apphollow_grupo11.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreenCompacta(){
+fun HomeScreenMediana(){
     Scaffold (
         topBar = {
             TopAppBar(title = { Text(text="Sleepy Hollow Store") })
@@ -37,7 +37,7 @@ fun HomeScreenCompacta(){
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             Text(
-                text = "¡Bienvenido Compacta!",
+                text = "¡Bienvenido Mediana!",
                 color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.titleLarge
             )
@@ -47,7 +47,7 @@ fun HomeScreenCompacta(){
 
             Image(
                 painter = painterResource(id= R.drawable.logo_png),
-                contentDescription = "Logo App Compacta",
+                contentDescription = "Logo App Mediana",
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(150.dp),

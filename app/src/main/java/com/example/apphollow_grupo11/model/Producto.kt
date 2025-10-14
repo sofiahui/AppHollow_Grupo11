@@ -1,3 +1,7 @@
-// Producto.kt
-// Modelo de datos para representar un producto de la tienda de ropa.
-// Aquí se definen los atributos y funciones relacionados con los productos.
+package com.example.apphollow_grupo11.model
+
+data class Producto(
+    val nombre: String,
+    val precio: Double,
+    val cantidad: Int
+)

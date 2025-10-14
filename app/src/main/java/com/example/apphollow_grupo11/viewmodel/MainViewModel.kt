@@ -1,4 +1,4 @@
-package com.example.apphollow_grupo11.viewmodels
+package com.example.apphollow_grupo11.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.apphollow_grupo11.navigation.NavigationEvent

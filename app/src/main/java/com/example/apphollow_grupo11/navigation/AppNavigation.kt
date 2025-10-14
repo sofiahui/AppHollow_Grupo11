@@ -10,9 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.apphollow_grupo11.ui.Screen.HomeScreen
-import com.example.apphollow_grupo11.ui.Screen.PerfilScreen
-import com.example.apphollow_grupo11.ui.Screen.RegistroScreen
+import com.example.apphollow_grupo11.ui.screen.HomeScreen
+import com.example.apphollow_grupo11.ui.screen.PerfilScreen
+import com.example.apphollow_grupo11.ui.screen.RegistroScreen
 import com.example.apphollow_grupo11.viewmodels.MainViewModel
 import kotlinx.coroutines.flow.collectLatest
 
