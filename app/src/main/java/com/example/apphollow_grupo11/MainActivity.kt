@@ -19,16 +19,18 @@ import com.example.apphollow_grupo11.navigation.Screen
 import com.example.apphollow_grupo11.ui.screen.HomeScreen
 import com.example.apphollow_grupo11.ui.screen.PerfilScreen
 import com.example.apphollow_grupo11.ui.theme.AppHollow_Grupo11Theme
-import com.example.apphollow_grupo11.viewmodels.MainViewModel
+import com.example.apphollow_grupo11.viewmodel.MainViewModel
 import kotlinx.coroutines.flow.collectLatest
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.activity.enableEdgeToEdge
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContent {
             AppHollow_Grupo11Theme {
                 val viewModel: MainViewModel = viewModel()

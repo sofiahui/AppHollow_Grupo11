@@ -13,7 +13,7 @@ import androidx.navigation.compose.composable
 import com.example.apphollow_grupo11.ui.screen.HomeScreen
 import com.example.apphollow_grupo11.ui.screen.PerfilScreen
 import com.example.apphollow_grupo11.ui.screen.RegistroScreen
-import com.example.apphollow_grupo11.viewmodels.MainViewModel
+import com.example.apphollow_grupo11.viewmodel.MainViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @OptIn(ExperimentalMaterial3Api::class)
