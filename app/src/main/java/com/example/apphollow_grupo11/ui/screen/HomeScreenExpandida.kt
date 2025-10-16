@@ -46,7 +46,7 @@ fun HomeScreenExtendida(){
             }
 
             Image(
-                painter = painterResource(id= R.drawable.logo_png),
+                painter = painterResource(id= R.drawable.logo_tienda),
                 contentDescription = "Logo App Extendida",
                 modifier = Modifier
                     .fillMaxWidth()

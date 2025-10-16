@@ -24,6 +24,7 @@ import androidx.navigation.NavController
 import com.example.apphollow_grupo11.viewmodel.UserViewModel
 
 
+
 @Composable
 fun RegistroScreen(
     navController: NavController,

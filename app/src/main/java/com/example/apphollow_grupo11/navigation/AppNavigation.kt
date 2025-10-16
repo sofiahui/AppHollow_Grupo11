@@ -14,6 +14,7 @@ import com.example.apphollow_grupo11.ui.screen.HomeScreen
 import com.example.apphollow_grupo11.ui.screen.PerfilScreen
 import com.example.apphollow_grupo11.ui.screen.RegistroScreen
 import com.example.apphollow_grupo11.viewmodel.MainViewModel
+import com.example.apphollow_grupo11.viewmodel.UserViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -54,7 +55,8 @@ fun AppNavigation(
                 PerfilScreen(navController = navController, viewModel = viewModel)
             }
             composable(Screen.Registro.route) {
-                RegistroScreen(navController = navController, viewModel = viewModel)
+                val UserViewModel: UserViewModel = viewModel()
+                RegistroScreen(navController = navController, viewModel = UserViewModel)
             }
         }
     }

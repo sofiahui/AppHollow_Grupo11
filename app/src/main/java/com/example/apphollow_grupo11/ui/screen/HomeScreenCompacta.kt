@@ -46,7 +46,7 @@ fun HomeScreenCompacta(){
             }
 
             Image(
-                painter = painterResource(id= R.drawable.logo_png),
+                painter = painterResource(id= R.drawable.logo_tienda),
                 contentDescription = "Logo App Compacta",
                 modifier = Modifier
                     .fillMaxWidth()

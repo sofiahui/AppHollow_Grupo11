@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.apphollow_grupo11.navigation.Screen
-import com.example.apphollow_grupo11.viewmodels.MainViewModel
+import com.example.apphollow_grupo11.viewmodel.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
