@@ -6,22 +6,15 @@ package com.example.apphollow_grupo11
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+
 import androidx.navigation.compose.rememberNavController
-import com.example.apphollow_grupo11.navigation.NavigationEvent
-import com.example.apphollow_grupo11.navigation.Screen
-import com.example.apphollow_grupo11.ui.screen.HomeScreen
-import com.example.apphollow_grupo11.ui.screen.PerfilScreen
+
 import com.example.apphollow_grupo11.ui.theme.AppHollow_Grupo11Theme
 import com.example.apphollow_grupo11.viewmodel.MainViewModel
-import kotlinx.coroutines.flow.collectLatest
-import androidx.compose.ui.Modifier
+import com.example.apphollow_grupo11.navigation.AppNavigation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.activity.enableEdgeToEdge
 
@@ -33,67 +26,28 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppHollow_Grupo11Theme {
-                val viewModel: MainViewModel = viewModel()
+                // Crear el navController y el ViewModel
                 val navController = rememberNavController()
+                val mainViewModel: MainViewModel = viewModel()
 
-                // 🔹 Escucha los eventos de navegación del ViewModel
-                LaunchedEffect(Unit) {
-                    viewModel.navigationEvents.collectLatest { event ->
-                        when (event) {
-                            is NavigationEvent.NavigateTo -> {
-                                navController.navigate(event.route.route) {
-                                    // Evita duplicados en la pila de navegación
-                                    launchSingleTop = true
-                                    restoreState = true
-                                    event.popUpToRoute?.let {
-                                        popUpTo(it.route) {
-                                            inclusive = event.inclusive
-                                        }
-                                    }
-                                }
-                            }
-
-                            is NavigationEvent.PopBackStack -> navController.popBackStack()
-                            is NavigationEvent.NavigateUp -> navController.navigateUp()
-                        }
-                    }
-                }
-
-                // 🔹 Estructura visual base con Scaffold + NavHost
-                Scaffold(
-                    modifier = Modifier.fillMaxSize()
-                ) { innerPadding ->
-                    NavHost(
-                        navController = navController,
-                        startDestination = Screen.Home.route,
-                        modifier = Modifier.padding(innerPadding)
-                    ) {
-                        composable(Screen.Home.route) {
-                            HomeScreen(navController = navController, viewModel = viewModel)
-                        }
-                        composable(Screen.Perfil.route) {
-                            PerfilScreen(navController = navController, viewModel = viewModel)
-                        }
-                    }
-                }
+                // 👉 Llamamos directamente a AppNavigation (la navegación central del proyecto)
+                AppNavigation(
+                    navController = navController,
+                    viewModel = mainViewModel
+                )
             }
         }
     }
 }
 
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun AppPreview() {
     AppHollow_Grupo11Theme {
-        Greeting("Android")
+        val navController = rememberNavController()
+        val mainViewModel: MainViewModel = viewModel()
+        AppNavigation(navController = navController, viewModel = mainViewModel)
     }
 }
+
+

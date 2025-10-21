@@ -7,6 +7,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -55,8 +56,8 @@ fun AppNavigation(
                 PerfilScreen(navController = navController, viewModel = viewModel)
             }
             composable(Screen.Registro.route) {
-                val UserViewModel: UserViewModel = viewModel()
-                RegistroScreen(navController = navController, viewModel = UserViewModel)
+                val userViewModel: UserViewModel = viewModel()
+                RegistroScreen(navController = navController, viewModel = userViewModel)
             }
         }
     }
