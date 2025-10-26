@@ -1,23 +1,18 @@
-// MainActivity.kt
-// Actividad principal de la aplicación. Aquí se inicializa la interfaz y la navegación principal usando Jetpack Compose y Material3.
-// Es el punto de entrada de la app de venta de ropa.
 package com.example.apphollow_grupo11
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-
 import androidx.navigation.compose.rememberNavController
-
+import com.example.apphollow_grupo11.navigation.AppNavigation
+import com.example.apphollow_grupo11.ui.components.NavigationDrawerScreen
 import com.example.apphollow_grupo11.ui.theme.AppHollow_Grupo11Theme
 import com.example.apphollow_grupo11.viewmodel.MainViewModel
-import com.example.apphollow_grupo11.navigation.AppNavigation
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.activity.enableEdgeToEdge
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
@@ -26,15 +21,15 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppHollow_Grupo11Theme {
-                // Crear el navController y el ViewModel
+                //  Se crea el controlador de navegación
                 val navController = rememberNavController()
+                //  Se obtiene el ViewModel
                 val mainViewModel: MainViewModel = viewModel()
 
-                // 👉 Llamamos directamente a AppNavigation (la navegación central del proyecto)
-                AppNavigation(
-                    navController = navController,
-                    viewModel = mainViewModel
-                )
+                // Se pasa correctamente al Drawer y al sistema de navegación
+                NavigationDrawerScreen(navController = navController) {
+                    AppNavigation(navController = navController, viewModel = mainViewModel)
+                }
             }
         }
     }
@@ -49,5 +44,3 @@ fun AppPreview() {
         AppNavigation(navController = navController, viewModel = mainViewModel)
     }
 }
-
-

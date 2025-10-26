@@ -18,18 +18,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.apphollow_grupo11.R
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreenCompacta(){
+fun HomeScreenCompacta(navController: NavController){
     Scaffold (
         topBar = {
             TopAppBar(title = { Text(text="Sleepy Hollow Store") })
         }
     ){
-            innerPadding ->
+        innerPadding ->
         Column(
             modifier = Modifier.padding(innerPadding)
                 .fillMaxSize()
@@ -37,14 +38,10 @@ fun HomeScreenCompacta(){
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             Text(
-                text = "¡Bienvenido Compacta!",
+                text = "¡Bienvenido a La tienda !",
                 color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.titleLarge
             )
-            Button(onClick = {}) {
-                Text("Presióname")
-            }
-
             Image(
                 painter = painterResource(id= R.drawable.logo_tienda),
                 contentDescription = "Logo App Compacta",
@@ -53,6 +50,13 @@ fun HomeScreenCompacta(){
                     .height(150.dp),
                 contentScale = ContentScale.Fit
             )
+
+            Button(onClick = { navController.navigate("LoginScreen") }) {
+                Text("Iniciar Sesión")
+            }
+
+
+
 
         }
     }

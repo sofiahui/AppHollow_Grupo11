@@ -5,10 +5,18 @@ package com.example.apphollow_grupo11.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+// 🎨 Tonos principales
+val GothicLila = Color(0xFF7E57C2)      // Lila oscuro elegante
+val GothicLilaLight = Color(0xFFB085F5) // Lila más claro para hover o acentos
+val GothicLilaDark = Color(0xFF4D2C91)  // Fondo principal o toolbar
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+// 🌑 Fondo y superficies
+val GothicBackground = Color(0xFF1E1B24) // Casi negro, con leve matiz púrpura
+val GothicSurface = Color(0xFF2A2235)    // Cartas y paneles
+
+// 💬 Textos
+val GothicTextPrimary = Color(0xFFEDE7F6) // Blanco-lila suave
+val GothicTextSecondary = Color(0xFFB39DDB) // Texto secundario o deshabilitado
+
+// 🩶 Neutros (para bordes, divisores, etc.)
+val GothicDivider = Color(0xFF4A3C63)

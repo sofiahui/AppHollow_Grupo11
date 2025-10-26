@@ -12,10 +12,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.apphollow_grupo11.ui.screen.HomeScreen
-import com.example.apphollow_grupo11.ui.screen.PerfilScreen
+import com.example.apphollow_grupo11.ui.screen.LoginScreen
 import com.example.apphollow_grupo11.ui.screen.RegistroScreen
+import com.example.apphollow_grupo11.ui.screen.ResumenScreen
 import com.example.apphollow_grupo11.viewmodel.MainViewModel
 import com.example.apphollow_grupo11.viewmodel.UserViewModel
+import com.example.apphollow_grupo11.viewmodel.LoginViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -52,13 +54,20 @@ fun AppNavigation(
             composable(Screen.Home.route) {
                 HomeScreen(navController = navController, viewModel = viewModel)
             }
-            composable(Screen.Perfil.route) {
-                PerfilScreen(navController = navController, viewModel = viewModel)
+            composable(Screen.Login.route) {
+                val LoginViewModel: LoginViewModel = viewModel()
+                LoginScreen(navController = navController, viewModel = LoginViewModel)
             }
             composable(Screen.Registro.route) {
                 val userViewModel: UserViewModel = viewModel()
                 RegistroScreen(navController = navController, viewModel = userViewModel)
             }
+            // 👇 NUEVA RUTA
+            composable(Screen.Resumen.route) {
+                val userViewModel: UserViewModel = viewModel()
+                ResumenScreen(navController = navController, viewModel = userViewModel)
+            }
+
         }
     }
 }

@@ -37,12 +37,12 @@ fun HomeScreenExtendida(){
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             Text(
-                text = "¡Bienvenido Extendida!",
+                text = "¡Bienvenido a la tienda!",
                 color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.titleLarge
             )
             Button(onClick = {}) {
-                Text("Presióname")
+                Text("iniciar sesión")
             }
 
             Image(

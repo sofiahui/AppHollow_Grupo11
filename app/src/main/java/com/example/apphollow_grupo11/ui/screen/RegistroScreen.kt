@@ -19,8 +19,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.apphollow_grupo11.navigation.Screen
 import com.example.apphollow_grupo11.viewmodel.UserViewModel
 
 
@@ -110,4 +113,13 @@ fun RegistroScreen(
             Text("Registrar")
         }
     }
+}
+
+@Preview(name= "RegistroScreen", widthDp = 360, heightDp = 800)
+@Composable
+fun PreviewRegistroScreen(){
+    val navController = rememberNavController()
+    val viewModel: UserViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+
+    RegistroScreen(navController = navController, viewModel = viewModel)
 }
