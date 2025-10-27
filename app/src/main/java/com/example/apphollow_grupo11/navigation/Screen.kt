@@ -6,5 +6,6 @@ sealed class Screen (val route: String){
     object Registro : Screen ("Registro")
 
     object Resumen : Screen (route = "Resumen")
-    
+
+    object PantallaPrincipal : Screen (route = "Pantalla Principal")
 }

@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.apphollow_grupo11.ui.screen.HomeScreen
 import com.example.apphollow_grupo11.ui.screen.LoginScreen
+import com.example.apphollow_grupo11.ui.screen.PantallaPrincipal
 import com.example.apphollow_grupo11.ui.screen.RegistroScreen
 import com.example.apphollow_grupo11.ui.screen.ResumenScreen
 import com.example.apphollow_grupo11.viewmodel.MainViewModel
@@ -66,6 +67,10 @@ fun AppNavigation(
             composable(Screen.Resumen.route) {
                 ResumenScreen(navController = navController, viewModel = userViewModel)
             }
+
+           /* composable(Screen.PantallaPrincipal.route) {
+                PantallaPrincipal(navController = navController, viewModel = userViewModel)
+            }*/
 
         }
     }

@@ -14,7 +14,7 @@ import androidx.compose.animation.animateColorAsState
 import com.example.apphollow_grupo11.viewmodel.EstadoViewModel
 
 @Composable
-fun PantallaPrincipal(modifier: Modifier = Modifier, viewModel: EstadoViewModel = viewModel()) {
+fun PantallaPrincipal(viewModel: EstadoViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
     // Usa el modifier en el contenedor principal
     val estado = viewModel.activo.collectAsState()
     val mostrarMensaje = viewModel.mostrarMensaje.collectAsState()
