@@ -1,11 +1,13 @@
 package com.example.apphollow_grupo11.ui.screen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
@@ -18,11 +20,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.apphollow_grupo11.R
 import com.example.apphollow_grupo11.navigation.Screen
 import com.example.apphollow_grupo11.viewmodel.UserViewModel
 
@@ -35,8 +40,26 @@ fun RegistroScreen(
 ){
     val estado by viewModel.estado.collectAsState()
 
+    Column(
+        Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Top, // logo arriba, formulario abajo
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        // Logo en la parte superior
+        Image(
+            painter = painterResource(id = R.drawable.logo_tienda),
+            contentDescription = "Logo App Compacta",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(180.dp), // ajusta tamaño aquí si lo quieres más pequeño o grande
+            contentScale = ContentScale.Fit
+        )
+
+        Spacer(Modifier.height(24.dp))
     Column (
-        Modifier.fillMaxSize()
+        Modifier.fillMaxWidth()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ){
@@ -115,11 +138,12 @@ fun RegistroScreen(
     }
 }
 
-@Preview(name= "RegistroScreen", widthDp = 360, heightDp = 800)
+
 @Composable
-fun PreviewRegistroScreen(){
+fun PreviewRegistroScreen() {
     val navController = rememberNavController()
     val viewModel: UserViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 
     RegistroScreen(navController = navController, viewModel = viewModel)
-}
+}}
+

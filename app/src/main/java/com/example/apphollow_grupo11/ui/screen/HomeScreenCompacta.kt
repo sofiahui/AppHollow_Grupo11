@@ -47,7 +47,7 @@ fun HomeScreenCompacta(navController: NavController){
                 contentDescription = "Logo App Compacta",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(150.dp),
+                    .height(200.dp),
                 contentScale = ContentScale.Fit
             )
 

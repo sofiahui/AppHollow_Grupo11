@@ -46,6 +46,7 @@ fun AppNavigation(
     }
 
     Scaffold { innerPadding ->
+        val userViewModel: UserViewModel = viewModel()
         NavHost(
             navController = navController,
             startDestination = Screen.Home.route,
@@ -59,12 +60,10 @@ fun AppNavigation(
                 LoginScreen(navController = navController, viewModel = LoginViewModel)
             }
             composable(Screen.Registro.route) {
-                val userViewModel: UserViewModel = viewModel()
                 RegistroScreen(navController = navController, viewModel = userViewModel)
             }
             // 👇 NUEVA RUTA
             composable(Screen.Resumen.route) {
-                val userViewModel: UserViewModel = viewModel()
                 ResumenScreen(navController = navController, viewModel = userViewModel)
             }
 
