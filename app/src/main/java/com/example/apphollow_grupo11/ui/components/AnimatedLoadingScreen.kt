@@ -21,8 +21,8 @@ fun AnimatedLoadingScreen(
     AnimatedContent(
         targetState = state,
         transitionSpec = {
-            fadeIn(animationSpec = tween(1000)) togetherWith
-                    fadeOut(animationSpec = tween(1000))
+            fadeIn(animationSpec = tween(5000)) togetherWith
+                    fadeOut(animationSpec = tween(5000))
         },
         label = "Animated Content",
         modifier = Modifier.fillMaxSize()

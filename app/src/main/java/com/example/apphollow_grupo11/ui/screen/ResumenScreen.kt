@@ -35,7 +35,8 @@ fun ResumenScreen(viewModel: UserViewModel, navController: NavController){
         Text("Contraseña: ${"*".repeat(estado.clave.length)}")
         Text("Términos: ${if (estado.aceptaTerminos) "Aceptados" else "No aceptados"}")
         Text("¡Registro exitoso!", style = MaterialTheme.typography.headlineSmall)
-        Text("Gracias por registrarte en nuestra aplicación.")
+
+        Text("Gracias por registrarte en nuestra tienda.")
 
         Spacer(Modifier.height(16.dp))
 

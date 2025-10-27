@@ -1,12 +1,13 @@
 package com.example.apphollow_grupo11.viewmodel
 
+import androidx.lifecycle.ViewModel
 import com.example.apphollow_grupo11.model.LoginUiState
 import com.example.apphollow_grupo11.model.LoginErrores
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-class LoginViewModel  {
+class LoginViewModel : ViewModel()  {
     private val _estado = MutableStateFlow(LoginUiState())
     val estado: StateFlow<LoginUiState> = _estado
 

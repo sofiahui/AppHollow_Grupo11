@@ -53,7 +53,7 @@ fun RegistroScreen(
             contentDescription = "Logo App Compacta",
             modifier = Modifier
                 .fillMaxWidth()
-                .height(180.dp), // ajusta tamaño aquí si lo quieres más pequeño o grande
+                .height(180.dp),
             contentScale = ContentScale.Fit
         )
 
@@ -134,6 +134,16 @@ fun RegistroScreen(
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Registrar")
+        }
+
+        Button(
+            onClick = {  navController.navigate(Screen.Home.route){
+                    navController.navigate("home")
+                }
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Volver al inicio")
         }
     }
 }

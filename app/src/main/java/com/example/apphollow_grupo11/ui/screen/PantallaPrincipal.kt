@@ -9,12 +9,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.animation.animateColorAsState
 import com.example.apphollow_grupo11.viewmodel.EstadoViewModel
 
 @Composable
-fun PantallaPrincipal(viewModel: EstadoViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
+fun PantallaPrincipal(viewModel: EstadoViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
+                      modifier: Modifier = Modifier
+) {
     // Usa el modifier en el contenedor principal
     val estado = viewModel.activo.collectAsState()
     val mostrarMensaje = viewModel.mostrarMensaje.collectAsState()
@@ -64,6 +65,6 @@ fun PantallaPrincipal(viewModel: EstadoViewModel = androidx.lifecycle.viewmodel.
                 )
             }
         }
+    }
 
-
-    }   }
+}
