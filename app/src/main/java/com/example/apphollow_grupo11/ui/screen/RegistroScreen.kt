@@ -116,14 +116,28 @@ fun RegistroScreen(
             modifier = Modifier.fillMaxWidth()
         )
 
-        Row (verticalAlignment = Alignment.CenterVertically) {
+        // Checkbox + texto
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Checkbox(
                 checked = estado.aceptaTerminos,
                 onCheckedChange = viewModel::onAceptarTerminosChange
             )
             Spacer(Modifier.width(8.dp))
-            Text("Acepto los terminos y condiciones")
+            Text("Acepta los términos y condiciones")
         }
+
+        // ️ Mensaje de error (solo se muestra si no los acepta)
+        if (!estado.aceptaTerminos) {
+            Text(
+                text = "Debe aceptar los términos y condiciones",
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(start = 48.dp) // se alinea debajo del texto
+            )
+        }
+
 
         Button(
             onClick = {

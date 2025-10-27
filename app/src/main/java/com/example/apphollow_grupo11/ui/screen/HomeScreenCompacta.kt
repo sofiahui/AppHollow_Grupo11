@@ -29,7 +29,7 @@ import com.example.apphollow_grupo11.R
 fun HomeScreenCompacta(navController: NavController) {
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(text = "Donde la oscuridad inspira") })
+            TopAppBar(title = { Text(text = "Donde la oscuridad nos inspira") })
         }
     ) { innerPadding ->
         Column(

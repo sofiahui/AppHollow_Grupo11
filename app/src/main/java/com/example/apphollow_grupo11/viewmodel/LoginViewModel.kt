@@ -40,6 +40,6 @@ class LoginViewModel : ViewModel()  {
 
         _estado.update { it.copy(errores = errores) }
 
-        return usuario == "usuario1" && clave == "1234"
+        return usuario == "usuario1" && clave == "123456"
     }
 }

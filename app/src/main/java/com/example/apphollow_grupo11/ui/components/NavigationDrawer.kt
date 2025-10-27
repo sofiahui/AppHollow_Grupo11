@@ -30,6 +30,8 @@ fun NavigationDrawerScreen(
         DrawerItem("Inicio", Icons.Default.Home, "home"),
         DrawerItem("Perfil", Icons.Default.Person, route = "login"),
         DrawerItem("Registro", Icons.Default.Create, "registro")
+
+
     )
 
     ModalNavigationDrawer(

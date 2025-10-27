@@ -111,7 +111,7 @@ fun LoginScreen(
                         onClick = {
                             uiState = UiState.Loading
                             coroutineScope.launch {
-                                delay(5000)
+                                delay(7000)
                                 if (viewModel.validar()) {
                                     uiState = UiState.Loaded
                                     navController.navigate("Perfil")
@@ -134,6 +134,16 @@ fun LoginScreen(
                             style = MaterialTheme.typography.bodyLarge,
                             modifier = Modifier.padding(top = 8.dp)
                         )
+                    }
+
+
+                    Spacer(modifier = Modifier.height(24.dp))
+
+                    Button(
+                        onClick = { navController.navigate(Screen.Home.route) },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("Volver al inicio")
                     }
 
                     Spacer(modifier = Modifier.height(16.dp))

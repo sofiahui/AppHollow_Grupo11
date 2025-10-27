@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.apphollow_grupo11.viewmodel.PerfilViewModel
 
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PerfilScreen(
@@ -62,7 +63,7 @@ fun PerfilScreen(
         ) {
             Text(
                 text = "¡Bienvenido al Perfil!",
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.primary
             )
         }
