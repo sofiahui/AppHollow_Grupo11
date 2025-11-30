@@ -13,5 +13,6 @@ sealed class Screen (
     object Admin : Screen("Admin", "Admin")
 
     object EditUser : Screen("EditUser", "Editar Usuario")
+    object Posts : Screen ("posts","Posts")
 
 }

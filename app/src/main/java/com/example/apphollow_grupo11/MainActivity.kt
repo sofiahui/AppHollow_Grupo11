@@ -13,6 +13,7 @@ import com.example.apphollow_grupo11.navigation.AppNavigation
 import com.example.apphollow_grupo11.ui.components.NavigationDrawerScreen
 import com.example.apphollow_grupo11.ui.theme.AppHollow_Grupo11Theme
 import com.example.apphollow_grupo11.viewmodel.MainViewModel
+import com.example.apphollow_grupo11.viewmodel.PostViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
@@ -26,9 +27,12 @@ class MainActivity : ComponentActivity() {
                 //  Se obtiene el ViewModel
                 val mainViewModel: MainViewModel = viewModel()
 
+                //Post ViewModel para post
+                val postViewModel: PostViewModel = viewModel ()
+
                 // Se pasa correctamente al Drawer y al sistema de navegación
                 NavigationDrawerScreen(navController = navController) {
-                    AppNavigation(navController = navController, viewModel = mainViewModel)
+                    AppNavigation(navController = navController, viewModel = mainViewModel,postViewModel = postViewModel)
                 }
             }
         }
@@ -41,6 +45,7 @@ fun AppPreview() {
     AppHollow_Grupo11Theme {
         val navController = rememberNavController()
         val mainViewModel: MainViewModel = viewModel()
-        AppNavigation(navController = navController, viewModel = mainViewModel)
+        val postViewModel: PostViewModel = viewModel ()
+        AppNavigation(navController = navController, viewModel = mainViewModel, postViewModel = postViewModel)
     }
 }

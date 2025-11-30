@@ -17,6 +17,7 @@ import com.example.apphollow_grupo11.ui.screen.EditUserScreen
 import com.example.apphollow_grupo11.ui.screen.HomeScreen
 import com.example.apphollow_grupo11.ui.screen.LoginScreen
 import com.example.apphollow_grupo11.ui.screen.PerfilScreen
+import com.example.apphollow_grupo11.ui.screen.PostScreen
 import com.example.apphollow_grupo11.ui.screen.RegistroScreen
 import com.example.apphollow_grupo11.ui.screen.ResumenScreen
 import com.example.apphollow_grupo11.viewmodel.MainViewModel
@@ -24,11 +25,12 @@ import com.example.apphollow_grupo11.viewmodel.UserViewModel
 import com.example.apphollow_grupo11.viewmodel.LoginViewModel
 import com.example.apphollow_grupo11.viewmodel.PerfilViewModel
 import com.example.apphollow_grupo11.viewmodel.AdminUserViewModel
+import com.example.apphollow_grupo11.viewmodel.PostViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppNavigation(navController: NavHostController, viewModel: MainViewModel
+fun AppNavigation(navController: NavHostController, viewModel: MainViewModel,postViewModel: PostViewModel
 ) {
 
     LaunchedEffect(Unit) {
@@ -80,6 +82,10 @@ fun AppNavigation(navController: NavHostController, viewModel: MainViewModel
             composable(Screen.Admin.route) {
                 AdminUserScreen(navController = navController)
             }
+            composable(Screen.Posts.route) {
+                PostScreen(viewModel = postViewModel)
+            }
+
 
             composable(Screen.EditUser.route) {
                 val adminViewModel: AdminUserViewModel = viewModel()

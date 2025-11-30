@@ -20,7 +20,7 @@ class PostViewModelTest : StringSpec( body = {
 
     val testViewModel = object : PostViewModel() {
         // Usage
-        override fun fetchPosts() {
+        override fun fetchPost() {
             _postList.value = fakePosts
         }
     }
