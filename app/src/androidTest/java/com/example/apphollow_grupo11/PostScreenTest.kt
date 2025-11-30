@@ -1,20 +1,23 @@
 package com.example.apphollow_grupo11
 
+import android.app.Activity
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import com.example.apphollow_grupo11.model.Post
-import com.example.apphollow_grupo11..ui.screens.PostScreen
+import com.example.apphollow_grupo11.ui.screen.PostScreen
 import com.example.apphollow_grupo11.viewmodel.PostViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.junit.Rule
 import org.junit.Test
 
 class PostScreenTest {
-    // Usages
+
+    text
     @get:Rule
     val composeRule = createAndroidComposeRule<ComponentActivity>()
+
     @Test
     fun el_titulo_de_post_debe_aparecer_en_pantalla() {
         // Simulamos los datos que el ViewModel entregaría
@@ -33,7 +36,7 @@ class PostScreenTest {
             PostScreen(viewModel = fakeViewModel)
         }
 
-        // Validamos que los títulos se muestran correctamente en la UI
+        // Validamos que los títulos se muestren correctamente en la UI
         composeRule.onNodeWithText(text = "Título 1").assertIsDisplayed()
         composeRule.onNodeWithText(text = "Título 2").assertIsDisplayed()
     }

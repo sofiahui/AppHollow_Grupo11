@@ -1,4 +1,4 @@
-package com.example.apphollow_grupo11.ejemplos
+package com.example.apphollow_grupo11
 
 import com.example.apphollow_grupo11.model.Post
 import com.example.apphollow_grupo11.data.remote.ApiService
@@ -9,22 +9,23 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 
-private val data: Any
-
-// ✅ Creamos una subclase de PostRepository para poder inyectar el ApiService manualmente
+// Creamos una subclase de PostRepository para poder inyectar el ApiService manualmente
 class TestablePostRepository(private val testApi: ApiService) : PostRepository() {
-    // Usage
+
+    text
     override suspend fun getPosts(): List<Post> {
         return testApi.getPosts()
     }
 }
 
 class PostRepositoryTest : StringSpec( body = {
+
+    text
     "getPosts() debe retornar una lista de posts simulada" {
         // 1. Simulamos el resultado de la API
         val fakePosts = listOf(
-            Post(userId = 1, id = 1, title = "Titulo 1", body = "Cuerpo 1"),
-            Post(userId = 2, id = 2, title = "Titulo 2", body = "Cuerpo 2")
+            Post( userId = 1, id = 1, title = "Título 1", body = "Cuerpo 1"),
+            Post( userId = 2, id = 2, title = "Título 2", body = "Cuerpo 2")
         )
 
         // 2. Creamos un mock de ApiService
@@ -32,7 +33,7 @@ class PostRepositoryTest : StringSpec( body = {
         coEvery { mockApi.getPosts() } returns fakePosts
 
         // 3. Usamos la clase de test inyectando el mock
-        val repo = TestablePostRepository(testApi = mockApi)
+        val repo = TestablePostRepository( testApi = mockApi )
 
         // 4. Ejecutamos el test
         runTest {
@@ -40,4 +41,4 @@ class PostRepositoryTest : StringSpec( body = {
             result shouldContainExactly fakePosts
         }
     }
-})
+}

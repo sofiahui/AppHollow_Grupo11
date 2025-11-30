@@ -1,4 +1,6 @@
-package com.example.apphollow_grupo11.ejemplos
+package com.example.apphollow_grupo11
+
+
 
 import com.example.apphollow_grupo11.model.Post
 import com.example.apphollow_grupo11.viewmodel.PostViewModel

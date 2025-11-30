@@ -1,9 +1,7 @@
 package com.example.apphollow_grupo11.ui.screen
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
@@ -11,10 +9,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.example.apphollow_grupo11.data.LoginResponse
+import com.example.apphollow_grupo11.ui.components.AppBottomBar
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.apphollow_grupo11.navigation.Screen
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.apphollow_grupo11.viewmodel.PerfilViewModel
 
 
@@ -23,59 +23,65 @@ import com.example.apphollow_grupo11.viewmodel.PerfilViewModel
 @Composable
 fun PerfilScreen(
     navController: NavController,
-    viewModel: PerfilViewModel = viewModel()
+    viewModel: PerfilViewModel = viewModel(),
 ) {
-    // Evitar NPE leyendo estado desde ViewModel con values por defecto
-    val estado by remember { derivedStateOf { /* si tu ViewModel tiene estado, úsalo aquí */ null } }
 
-    // Lista de pantallas disponibles en la barra de navegación
+    val usuario = navController.currentBackStackEntry
+        ?.savedStateHandle
+        ?.get<LoginResponse>("usuarioLogeado")
+
+    // Para evitar múltiples ejecuciones
+    LaunchedEffect(usuario?.email) {
+        usuario?.let {
+            viewModel.cargarUsuario(
+                nombre = it.name,
+                correo = it.email,
+                direccion = it.address
+            )
+        }
+    }
+
+    val estado by viewModel.estado.collectAsState()
+
     val items = listOf(Screen.Home, Screen.Perfil)
-    var selectedItem by remember { mutableStateOf(1) }
+    val currentRoute = navController.currentBackStackEntry?.destination?.route
+    // val selectedIndex = items.indexOfFirst { it.route == currentRoute }
 
     Scaffold(
         bottomBar = {
-            NavigationBar {
-                items.forEachIndexed { index, screen ->
-                    NavigationBarItem(
-                        selected = selectedItem == index,
-                        onClick = {
-                            selectedItem = index
-                            navController.navigate(screen.route)
-                        },
-                        label = { Text(text = screen.route) },
-                        icon = {
-                            Icon(
-                                imageVector = if (screen == Screen.Home) Icons.Default.Home else Icons.Default.Person,
-                                contentDescription = screen.route
-                            )
-                        }
-                    )
-                }
-            }
+            AppBottomBar(navController, usuario)
         }
-    ) { innerPadding ->
+    ) { padding ->
         Column(
             modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                .padding(padding)
+                .padding(16.dp)
         ) {
-            Text(
-                text = "¡Bienvenido al Perfil!",
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.primary
+
+            OutlinedTextField(
+                value = estado.nombre,
+                onValueChange = {},
+                enabled = false,
+                label = { Text("Nombre") }
+            )
+
+            Spacer(Modifier.height(12.dp))
+
+            OutlinedTextField(
+                value = estado.correo,
+                onValueChange = {},
+                enabled = false,
+                label = { Text("Correo") }
+            )
+
+            Spacer(Modifier.height(12.dp))
+
+            OutlinedTextField(
+                value = estado.direccion,
+                onValueChange = {},
+                enabled = false,
+                label = { Text("Dirección") }
             )
         }
     }
 }
-
-/*@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun PreviewPerfilScreen() {
-    val fakeNavController = androidx.navigation.compose.rememberNavController()
-
-    // No usamos el sistema de ViewModel aquí, solo un objeto simple
-   // val fakeViewModel =
-
-    PerfilScreen(navController = fakeNavController, viewModel = fakeViewModel)}*/

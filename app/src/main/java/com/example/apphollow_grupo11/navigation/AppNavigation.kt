@@ -11,6 +11,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.apphollow_grupo11.data.UserResponse
+import com.example.apphollow_grupo11.ui.screen.AdminUserScreen
+import com.example.apphollow_grupo11.ui.screen.EditUserScreen
 import com.example.apphollow_grupo11.ui.screen.HomeScreen
 import com.example.apphollow_grupo11.ui.screen.LoginScreen
 import com.example.apphollow_grupo11.ui.screen.PerfilScreen
@@ -20,13 +23,14 @@ import com.example.apphollow_grupo11.viewmodel.MainViewModel
 import com.example.apphollow_grupo11.viewmodel.UserViewModel
 import com.example.apphollow_grupo11.viewmodel.LoginViewModel
 import com.example.apphollow_grupo11.viewmodel.PerfilViewModel
+import com.example.apphollow_grupo11.viewmodel.AdminUserViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppNavigation(navController: NavHostController, viewModel: MainViewModel
 ) {
-    // 🔹 Escucha los eventos globales de navegación
+
     LaunchedEffect(Unit) {
         viewModel.navigationEvents.collectLatest { event ->
             when (event) {
@@ -63,7 +67,7 @@ fun AppNavigation(navController: NavHostController, viewModel: MainViewModel
             composable(Screen.Registro.route) {
                 RegistroScreen(navController = navController, viewModel = userViewModel)
             }
-            // 👇 NUEVA RUTA
+
             composable(Screen.Resumen.route) {
                 ResumenScreen(navController = navController, viewModel = userViewModel)
             }
@@ -71,6 +75,25 @@ fun AppNavigation(navController: NavHostController, viewModel: MainViewModel
             composable(Screen.Perfil.route) {
                 val perfilViewModel: PerfilViewModel = viewModel()
                 PerfilScreen(navController = navController, viewModel = perfilViewModel)
+            }
+
+            composable(Screen.Admin.route) {
+                AdminUserScreen(navController = navController)
+            }
+
+            composable(Screen.EditUser.route) {
+                val adminViewModel: AdminUserViewModel = viewModel()
+                val user = navController.previousBackStackEntry
+                    ?.savedStateHandle
+                    ?.get<UserResponse>("userToEdit")
+
+                if (user != null) {
+                    EditUserScreen(
+                        navController = navController,
+                        viewModel = adminViewModel,
+                        user = user
+                    )
+                }
             }
         }
     }

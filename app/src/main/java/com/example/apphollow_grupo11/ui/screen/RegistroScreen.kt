@@ -23,13 +23,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.apphollow_grupo11.R
 import com.example.apphollow_grupo11.navigation.Screen
 import com.example.apphollow_grupo11.viewmodel.UserViewModel
+import com.example.apphollow_grupo11.data.ApiEstado
+
 
 
 
@@ -137,6 +138,31 @@ fun RegistroScreen(
                 modifier = Modifier.padding(start = 48.dp) // se alinea debajo del texto
             )
         }
+
+        // Estado de la API
+        val estadoApi by viewModel.estadoApi.collectAsState()
+
+        // Mostrar estado de API
+        when (estadoApi) {
+            is ApiEstado.Cargando -> Text(
+                "Registrando usuario...",
+                color = MaterialTheme.colorScheme.primary
+            )
+            is ApiEstado.Exito -> {
+                Text(
+                    "¡Registro exitoso!",
+                    color = MaterialTheme.colorScheme.primary
+                )
+                navController.navigate("resumen")
+            }
+            is ApiEstado.Error -> Text(
+                (estadoApi as ApiEstado.Error).mensaje,
+                color = MaterialTheme.colorScheme.error
+            )
+            ApiEstado.Idle -> {}
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
 
 
         Button(

@@ -14,6 +14,21 @@ class PerfilViewModel : ViewModel() {
     private val _estado = MutableStateFlow(UserUiEstado())
     val estado: StateFlow<UserUiEstado> = _estado
 
+    /**
+     * Cargar datos del usuario logeado en el estado.
+     * Este método lo llamas desde PerfilScreen cuando recibes el usuario desde Login.
+     */
+    fun cargarUsuario(nombre: String, correo: String, direccion: String?) {
+        _estado.update {
+            it.copy(
+                nombre = nombre,
+                correo = correo,
+                direccion = direccion ?: "",
+                errores = UserError()
+            )
+        }
+    }
+
     fun onNombreChange(valor: String) {
         _estado.update { it.copy(nombre = valor, errores = it.errores.copy(nombre = null)) }
     }
@@ -40,11 +55,7 @@ class PerfilViewModel : ViewModel() {
             errores.direccion
         ).isNotEmpty()
 
-        _estado.update {
-            it.copy(
-                errores = errores
-            )
-        }
+        _estado.update { it.copy(errores = errores) }
 
         return !hayErrores
     }

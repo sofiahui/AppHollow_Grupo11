@@ -7,7 +7,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import androidx.datastore.preferences.core.stringPreferencesKey
-import kotlinx.coroutines.flow.first
+
 //  Declaramos el DataStore con nombre 'preferencias_usuario'
 val Context.dataStore by preferencesDataStore(name = "preferencias_usuario")
 
