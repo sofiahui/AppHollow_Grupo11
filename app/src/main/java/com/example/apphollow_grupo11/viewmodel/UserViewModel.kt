@@ -1,6 +1,6 @@
 package com.example.apphollow_grupo11.viewmodel
 
-import androidx.lifecycle.ViewModel
+
 import com.example.apphollow_grupo11.model.UserError
 import com.example.apphollow_grupo11.model.UserUiEstado
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,6 +11,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import com.example.apphollow_grupo11.data.ApiEstado
+import com.example.apphollow_grupo11.data.UserRequest
+import com.example.apphollow_grupo11.network.RetrofitInstance
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -24,6 +27,11 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     // 🔹 Estado del usuario actual (sesión)
     private val _usuario = MutableStateFlow<UserUiEstado?>(null)
     val usuario: StateFlow<UserUiEstado?> = _usuario
+
+    // 🔹 Estado de la API (registro)
+    private val _estadoApi = MutableStateFlow<ApiEstado>(ApiEstado.Idle)
+    val estadoApi: StateFlow<ApiEstado> = _estadoApi
+
 
     // -----------------------------
     //  Funciones de actualización
@@ -77,6 +85,39 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // -----------------------------
+    // Registrar usuario (simulación API)
+    // -----------------------------
+    fun registrarUsuario() {
+        val datos = _estado.value
+
+        val request = UserRequest(
+            name = datos.nombre,
+            email = datos.correo,
+            passwordHash = datos.clave,
+            address = datos.direccion
+        )
+
+        viewModelScope.launch {
+            _estadoApi.value = ApiEstado.Cargando
+
+            try {
+                val respuesta = RetrofitInstance.instance.registrarUsuario(request)
+
+                if (respuesta.isSuccessful) {
+                    _estadoApi.value = ApiEstado.Exito("Usuario registrado con éxito")
+                } else {
+                    _estadoApi.value = ApiEstado.Error("Error: ${respuesta.code()}")
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace() // ver en logcat la traza completa
+                _estadoApi.value = ApiEstado.Error("No se pudo conectar al servidor: ${e.message}")
+            }
+        }
+    }
+
+
+    // -----------------------------
     // 💾 Guardar usuario en DataStore
     // -----------------------------
     fun guardarUsuario() {
@@ -113,5 +154,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             estadoDataStore.limpiarUsuario()
             _usuario.value = null
         }
+    }
+
+    // -----------------------------
+    // Reset estado API
+    // -----------------------------
+    fun resetApiEstado() {
+        _estadoApi.value = ApiEstado.Idle
     }
 }

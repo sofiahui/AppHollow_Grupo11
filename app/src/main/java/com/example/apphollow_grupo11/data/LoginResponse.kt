@@ -3,8 +3,6 @@ package com.example.apphollow_grupo11.data
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-
-
 @Parcelize
 data class LoginResponse(
     val id: Int,

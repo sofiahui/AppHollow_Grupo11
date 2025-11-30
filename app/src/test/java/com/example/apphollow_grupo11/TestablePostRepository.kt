@@ -1,44 +1,41 @@
 package com.example.apphollow_grupo11
 
 import com.example.apphollow_grupo11.model.Post
-import com.example.apphollow_grupo11.data.remote.ApiService
+import com.example.apphollow_grupo11.network.ApiService
 import com.example.apphollow_grupo11.repository.PostRepository
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldContainExactly
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
+import retrofit2.Response
 
-// Creamos una subclase de PostRepository para poder inyectar el ApiService manualmente
-class TestablePostRepository(private val testApi: ApiService) : PostRepository() {
+class TestablePostRepository(
+    private val testApi: ApiService
+) : PostRepository(testApi) {
 
-    text
     override suspend fun getPosts(): List<Post> {
-        return testApi.getPosts()
+        val response = testApi.getPosts()
+        return response.body() ?: emptyList()
     }
 }
 
-class PostRepositoryTest : StringSpec( body = {
+class PostRepositoryTest : StringSpec({
 
-    text
     "getPosts() debe retornar una lista de posts simulada" {
-        // 1. Simulamos el resultado de la API
+
         val fakePosts = listOf(
-            Post( userId = 1, id = 1, title = "Título 1", body = "Cuerpo 1"),
-            Post( userId = 2, id = 2, title = "Título 2", body = "Cuerpo 2")
+            Post(1, 1, "Título 1", "Cuerpo 1"),
+            Post(2, 2, "Título 2", "Cuerpo 2")
         )
 
-        // 2. Creamos un mock de ApiService
         val mockApi = mockk<ApiService>()
-        coEvery { mockApi.getPosts() } returns fakePosts
+        coEvery { mockApi.getPosts() } returns Response.success(fakePosts)
 
-        // 3. Usamos la clase de test inyectando el mock
-        val repo = TestablePostRepository( testApi = mockApi )
+        val repo = TestablePostRepository(testApi = mockApi)
 
-        // 4. Ejecutamos el test
         runTest {
-            val result = repo.getPosts()
-            result shouldContainExactly fakePosts
+            repo.getPosts() shouldContainExactly fakePosts
         }
     }
-}
+})

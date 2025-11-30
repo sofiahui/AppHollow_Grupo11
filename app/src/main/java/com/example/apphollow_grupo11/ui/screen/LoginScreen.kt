@@ -111,13 +111,43 @@ fun LoginScreen(
                         onClick = {
                             uiState = UiState.Loading
                             coroutineScope.launch {
-                                delay(7000)
-                                if (viewModel.validar()) {
-                                    uiState = UiState.Loaded
-                                    navController.navigate("Perfil")
+                                // Asegurar un tiempo mínimo de carga para mejor UX
+                                val minLoadingMs = 2000L // 2 segundo de carga mínima
+                                val start = System.currentTimeMillis()
+
+                                val resultado = viewModel.login()
+
+                                // Calcular tiempo transcurrido
+                                val elapsed = System.currentTimeMillis() - start
+
+                                // Si fue menos que el mínimo, esperar el tiempo restante
+                                // El login es super rapido con la base de datos local
+                                // por eso puse esta función para que por lo menos se vea un poquito la animacion
+                                if (elapsed < minLoadingMs) {
+                                    delay(minLoadingMs - elapsed)
+                                }
+
+                                uiState = UiState.Loaded
+
+                                if (resultado) {
+                                    val usuario = viewModel.usuarioLogeado.value
+
+                                    val destino = if (usuario?.admin == true) {
+                                        Screen.Admin.route
+                                    } else {
+                                        Screen.Perfil.route
+                                    }
+
+                                    navController.navigate(destino) {
+                                        popUpTo(Screen.Login.route) { inclusive = true }
+                                    }
+
+                                    navController.currentBackStackEntry
+                                        ?.savedStateHandle
+                                        ?.set("usuarioLogeado", usuario)
                                 } else {
                                     uiState = UiState.Error
-                                    delay(5000)
+                                    delay(4000)
                                     uiState = UiState.Loaded
                                 }
                             }
@@ -126,6 +156,7 @@ fun LoginScreen(
                     ) {
                         Text("Ingresar")
                     }
+
 
                     if (uiState == UiState.Error) {
                         Text(
@@ -163,3 +194,4 @@ fun LoginScreen(
         }
     }
 }
+

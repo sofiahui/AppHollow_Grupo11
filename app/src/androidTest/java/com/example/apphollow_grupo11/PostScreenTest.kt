@@ -1,6 +1,5 @@
 package com.example.apphollow_grupo11
 
-import android.app.Activity
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -14,7 +13,6 @@ import org.junit.Test
 
 class PostScreenTest {
 
-    text
     @get:Rule
     val composeRule = createAndroidComposeRule<ComponentActivity>()
 
@@ -26,10 +24,12 @@ class PostScreenTest {
             Post(userId = 2, id = 2, title = "Título 2", body = "Contenido 2")
         )
 
-        // Subclase falsa de PostViewModel con StateFlow simulado
         val fakeViewModel = object : PostViewModel() {
-            override val postList = MutableStateFlow(value = fakePosts)
+            override fun fetchPosts() {
+                _postList.value = fakePosts
+            }
         }
+
 
         // Renderizamos el PostScreen con el ViewModel falso
         composeRule.setContent {
@@ -37,7 +37,7 @@ class PostScreenTest {
         }
 
         // Validamos que los títulos se muestren correctamente en la UI
-        composeRule.onNodeWithText(text = "Título 1").assertIsDisplayed()
-        composeRule.onNodeWithText(text = "Título 2").assertIsDisplayed()
+        composeRule.onNodeWithText("Título 1").assertIsDisplayed()
+        composeRule.onNodeWithText("Título 2").assertIsDisplayed()
     }
 }
