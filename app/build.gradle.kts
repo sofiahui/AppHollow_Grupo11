@@ -65,6 +65,7 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.6.0")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation(libs.androidx.compose.ui.test.junit4)
 
     // Kotest
     testImplementation("io.kotest:kotest-assertions-core:5.8.0")
@@ -79,6 +80,7 @@ dependencies {
 
      // Compose UI Test
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.6.2")
+    androidTestImplementation(project(":app"))
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.6.2")
 
 
@@ -106,6 +108,7 @@ dependencies {
     tasks.withType<Test>().configureEach {
         useJUnitPlatform()
     }
+    testImplementation(kotlin("test"))
 
 
 }

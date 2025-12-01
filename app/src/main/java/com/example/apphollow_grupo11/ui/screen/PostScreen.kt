@@ -12,14 +12,17 @@ import androidx.compose.ui.unit.dp
 import com.example.apphollow_grupo11.viewmodel.PostViewModel
 
 @Composable
-fun PostScreen(viewModel: PostViewModel) {
+fun PostScreen(viewModel: PostViewModel,autoFetch: Boolean = true) {
 
     val posts = viewModel.postList.collectAsState().value
 
-    // 🔥 Esto asegura que la UI cargue los datos en tests
-    LaunchedEffect(Unit) {
-        viewModel.fetchPosts()
+    if (autoFetch) {
+        LaunchedEffect(Unit) {
+            viewModel.fetchPost()
+        }
     }
+
+
 
     LazyColumn {
         items(posts) { post ->

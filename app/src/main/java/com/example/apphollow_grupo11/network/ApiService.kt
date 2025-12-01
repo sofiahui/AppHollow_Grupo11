@@ -11,17 +11,17 @@ import retrofit2.http.Path
 interface ApiService {
 
     // Obtener todos los posts
-    @GET("api/posts")
+    @GET("posts")
     suspend fun getPosts(): Response<List<Post>>
 
     // Crear un post nuevo (si tu API lo soporta)
-    @POST("api/posts")
+    @POST("posts")
     suspend fun crearPost(
         @Body post: Post
     ): Response<Post>
 
     // Obtener un post por ID (opcional)
-    @GET("api/posts/{id}")
+    @GET("posts/{id}")
     suspend fun getPostPorId(
         @Path("id") id: Int
     ): Response<Post>

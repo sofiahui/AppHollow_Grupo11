@@ -15,7 +15,7 @@ open class PostViewModel : ViewModel() {
         protected val _postList = MutableStateFlow<List<Post>>(emptyList())
         val postList: StateFlow<List<Post>> = _postList
 
-        open fun fetchPosts() {
+        open fun fetchPost() {
         viewModelScope.launch {
             try {
                 _postList.value = repository.getPosts()

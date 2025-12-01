@@ -10,15 +10,6 @@ import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import retrofit2.Response
 
-class TestablePostRepository(
-    private val testApi: ApiService
-) : PostRepository(testApi) {
-
-    override suspend fun getPosts(): List<Post> {
-        val response = testApi.getPosts()
-        return response.body() ?: emptyList()
-    }
-}
 
 class PostRepositoryTest : StringSpec({
 
@@ -32,10 +23,11 @@ class PostRepositoryTest : StringSpec({
         val mockApi = mockk<ApiService>()
         coEvery { mockApi.getPosts() } returns Response.success(fakePosts)
 
-        val repo = TestablePostRepository(testApi = mockApi)
+        val repo = PostRepository(api = mockApi)
 
         runTest {
             repo.getPosts() shouldContainExactly fakePosts
         }
     }
 })
+
