@@ -65,7 +65,7 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.6.0")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
-    implementation(libs.androidx.compose.ui.test.junit4)
+
 
     // Kotest
     testImplementation("io.kotest:kotest-assertions-core:5.8.0")
