@@ -14,26 +14,26 @@ import retrofit2.http.Path
 interface UserApi {
 
     // Registro de usuario (Create)
-    @POST("users/register")
+    @POST("api/users/register")
     suspend fun registrarUsuario(
         @Body user: UserRequest
     ): Response<UserResponse>
 
     // Login de usuario (Read)
-    @POST("users/login")
+    @POST("api/users/login")
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
 
-    @GET("users")
+    @GET("api/users")
     suspend fun obtenerUsuarios(): Response<List<UserResponse>>
 
-    @PUT("users/{id}")
+    @PUT("api/users/{id}")
     suspend fun updateUser(
         @Path("id") id: Int,
         @Body user: UserResponse
     ): Response<UserResponse>
 
     // Obtener usuario por ID (Read)
-    @GET("users/{id}")
+    @GET("api/users/{id}")
     suspend fun obtenerUsuario(@Path("id") id: Int): Response<UserResponse>
 
 

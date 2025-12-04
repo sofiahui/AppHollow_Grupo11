@@ -58,7 +58,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // -----------------------------
-    // ✅ Validación del formulario
+    //  Validación del formulario
     // -----------------------------
     fun validarFormulario(): Boolean {
         val estadoActual = _estado.value
@@ -118,7 +118,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
 
     // -----------------------------
-    // 💾 Guardar usuario en DataStore
+    //  Guardar usuario en DataStore
     // -----------------------------
     fun guardarUsuario() {
         val usuarioActual = _estado.value
